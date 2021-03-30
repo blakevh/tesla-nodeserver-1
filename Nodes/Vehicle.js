@@ -93,7 +93,7 @@ module.exports = function(Polyglot) {
       try {
         vehicleGuiSettings = {response: await this.tesla.getVehicleGuiSettings(id)};
       } catch (err) {
-        vehicleGuiSettings this.wakeupAndRetry(id);
+        vehicleGuiSettings = this.wakeupAndRetry(id);
       }
 
       if (vehicleGuiSettings && vehicleGuiSettings.response) {
