@@ -238,7 +238,8 @@ module.exports = function(Polyglot) {
 
     vehicleUOM(guisettings) {
 	    // this will take the units set from the Tesla GUI in the vehicle
-      // and we'll use that to match what is displayed by the nodeserver 
+      // and we'll use that to match what is displayed by the nodeserver
+      logger.debug('Vehicle.vehidleUOM() guisettings %o', guisettings);
 	    if (guisettings.gui_distance_units) {
 	      if (guisettings.gui_distance_units.includes('mi')) {
 	        this.distance_uom = 'mi';
