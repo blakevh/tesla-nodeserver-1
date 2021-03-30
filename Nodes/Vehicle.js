@@ -93,8 +93,7 @@ module.exports = function(Polyglot) {
       try {
         vehicleGuiSettings = {response: await this.tesla.getVehicleGuiSettings(id)};
       } catch (err) {
-        await this.tesla.wakeUp(id);
-        vehicleGuiSettings = await this.initializeUOMRetry(id);
+        vehicleGuiSettings this.wakeupAndRetry(id);
       }
 
       if (vehicleGuiSettings && vehicleGuiSettings.response) {
@@ -111,6 +110,15 @@ module.exports = function(Polyglot) {
         logger.error('Vehicle.initializeUOM() %s', vehicleGuiSettings.error);
       }
       logger.info('Vehicle.initializeUOM() done');
+    }
+    
+    wakeupAndRetry(id) {
+      try {
+        await this.tesla.wakeUp(id);
+      } catch (err) {
+        logger.error('Vehicle.wakeupAndRetry() %s', err);
+      }
+      vehicleGuiSettings = await this.initializeUOMRetry(id);
     }
 
     // The id is stored in GV20
