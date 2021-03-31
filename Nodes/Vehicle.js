@@ -2,7 +2,7 @@
 // This is the charging node for the vehicle.
 
 const AsyncLock = require('async-lock');
-const lock = new AsyncLock({ timeout: 15000 });
+const lock = new AsyncLock({ timeout: 20000 });
 
 // nodeDefId must match the nodedef in the profile
 const nodeDefId = 'VEHICLE';
@@ -75,10 +75,10 @@ module.exports = function(Polyglot) {
 
     async initializeUOMRetry(id)
     {
-      const MAX_RETRIES = 1;
+      const MAX_RETRIES = 2;
       for (let i = 0; i <= MAX_RETRIES; i++) {
         try {
-          await delay(3000); // Wait 3 seconds before trying again.
+          await delay(5000); // Wait 5 seconds before trying again.
           return {response: await this.tesla.getVehicleGuiSettings(id)};
         } catch (err) {
           logger.debug('Vehicle.initializeUOMRetry Retrying %d %s', i, err);
