@@ -83,6 +83,7 @@ module.exports = function(Polyglot) {
 
     displayCredentialsError(err) {
       if (err == "HTTP error 401") {
+        logger.debug("In http error 401");
         this.polyInterface.addNotice(
           'credsError',
           'Tesla account login failed'
