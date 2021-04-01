@@ -82,6 +82,7 @@ module.exports = function(Polyglot) {
     }
 
     displayCredentialsError(err) {
+      logger.debug("What is the message: %o", err)
       if (err == "HTTP error 401") {
         logger.debug("In http error 401");
         this.polyInterface.addNotice(
