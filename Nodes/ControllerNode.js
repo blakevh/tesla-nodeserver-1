@@ -83,7 +83,7 @@ module.exports = function(Polyglot) {
 
     displayCredentialsError(err) {
       logger.debug("ControllerNode.displayCredentialsError() %o", err);
-      if (err.statusCode === 401 || err === "Unauthorized") {
+      if (err.statusCode === 401) {
         this.polyInterface.addNotice(
           'credsError',
           'Tesla account login failed'
